@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kế hoạch chăm sóc người yêu</title>
+
+<style>
+:root{
+  --primary:#7F77DD;
+  --secondary:#3C3489;
+}
+
+body{
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(135deg,#fdfbfb,#ebedee);
+  margin:0;
+}
+
+.container{
+  max-width:1000px;
+  margin:auto;
+  padding:1.5rem;
+}
+
+.tabs{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-bottom:1rem;
+}
+
+.tab{
+  padding:10px 16px;
+  background:white;
+  border-radius:999px;
+  cursor:pointer;
+}
+
+.tab.active{
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:white;
+}
+
+.panel{display:none}
+.panel.active{display:block}
+
+.section-title{
+  font-size:13px;
+  font-weight:bold;
+  color:var(--primary);
+  margin:12px 0;
+}
+
+.card-grid{
+  display:grid;
+  gap:10px;
+}
+
+.card{
+  background:white;
+  padding:1rem;
+  border-radius:12px;
+}
+
+.card-title{font-weight:bold;margin:5px 0}
+.card-desc{font-size:13px;color:#555}
+
+.badge{
+  font-size:11px;
+  padding:3px 8px;
+  border-radius:6px;
+  display:inline-block;
+  margin-bottom:5px;
+}
+.badge-purple{background:#EEEDFE}
+.badge-teal{background:#E1F5EE}
+.badge-amber{background:#FFF3CD}
+.badge-coral{background:#FAECE7}
+
+.checklist{list-style:none;padding:0}
+.checklist li{
+  display:flex;
+  gap:10px;
+  padding:10px;
+  border-radius:10px;
+}
+.checklist li:hover{background:#f5f5ff}
+
+.check-icon{
+  width:20px;height:20px;
+  border-radius:50%;
+  border:1px solid #ccc;
+  cursor:pointer;
+}
+
+.check-icon.done{
+  background:#1D9E75;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.check-text.done{
+  text-decoration:line-through;
+  color:#aaa;
+}
+
+.food-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.food-col{
+  background:white;
+  padding:1rem;
+  border-radius:12px;
+}
+
+.food-col-title{font-weight:bold;margin-bottom:10px}
+
+.food-item{
+  font-size:13px;
+  margin-bottom:5px;
+  display:flex;
+  gap:6px;
+}
+
+.dot{
+  width:6px;height:6px;border-radius:50%;
+  margin-top:6px;
+}
+
+.dot-good{background:green}
+.dot-bad{background:red}
+
+.pain-tag{
+  font-weight:bold;
+  margin-bottom:4px;
+}
+
+.tip-box{
+  background:#EEEDFE;
+  padding:1rem;
+  border-radius:10px;
+  margin-top:1rem;
+}
+
+.sendBtn{
+  margin-top:10px;
+  padding:10px;
+  border:none;
+  border-radius:8px;
+  background:var(--primary);
+  color:white;
+  cursor:pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container"> <h2 class="sr-only">Kế hoạch chăm sóc người yêu trong kỳ kinh nguyệt</h2> <div class="tabs"> <div class="tab active" onclick="showTab('before')">Trước kỳ kinh</div> <div class="tab" onclick="showTab('during')">Trong kỳ kinh</div> <div class="tab" onclick="showTab('pain')">Giảm đau</div> <div class="tab" onclick="showTab('mental')">Tinh thần</div> <div class="tab" onclick="showTab('after')">Sau kỳ kinh</div> </div> <!-- BEFORE --> <div class="panel active" id="panel-before"> <p class="section-title">3–5 ngày trước — chuẩn bị</p> <div class="card-grid" style="grid-template-columns: 1fr 1fr;"> <div class="card"> <div class="badge badge-purple">Mua sắm</div> <div class="card-title">Đồ dùng cần có</div> <div class="card-desc">Băng vệ sinh (hỏi loại bạn ấy thích), thuốc Ibuprofen, túi chườm nóng hoặc miếng dán nhiệt, chocolate đen, trà gừng, trà hoa cúc, vitamin E</div> </div> <div class="card"> <div class="badge badge-teal">Quan sát</div> <div class="card-title">Nhận biết PMS</div> <div class="card-desc">Bạn ấy có thể dễ cáu, buồn, mệt mỏi, nổi mụn, ngực căng — đây là sinh lý. Lắng nghe nhiều hơn, tranh luận ít lại</div> </div> </div> <p class="section-title">Checklist chuẩn bị — bấm để đánh dấu hoàn thành</p> <ul class="checklist" id="checklist-before"> <li><div class="check-icon" onclick="toggle(this)"></div><span class="check-text">Hỏi bạn ấy kỳ kinh sắp tới không và bạn ấy cần gì</span></li> <li><div class="check-icon" onclick="toggle(this)"></div><span class="check-text">Mua băng vệ sinh đúng loại bạn ấy dùng</span></li> <li><div class="check-icon" onclick="toggle(this)"></div><span class="check-text">Chuẩn bị thuốc giảm đau Ibuprofen 400mg</span></li> <li><div class="check-icon" onclick="toggle(this)"></div><span class="check-text">Mua túi chườm hoặc miếng dán nhiệt</span></li> <li><div class="check-icon" onclick="toggle(this)"></div><span class="check-text">Trữ chocolate đen, trà gừng, mật ong ở nhà</span></li> <li><div class="check-icon" onclick="toggle(this)"></div><span class="check-text">Nhắc nhở nhẹ nhàng nếu bạn ấy quên uống thuốc bổ</span></li> <li><div class="check-icon" onclick="toggle(this)"></div><span class="check-text">Chuẩn bị tinh thần — kiên nhẫn và thông cảm hơn trong giai đoạn này</span></li> </ul> </div> <!-- DURING --> <div class="panel" id="panel-during"> <p class="section-title">Ngày 1–7 — những việc cụ thể</p> <ul class="checklist"> <li><div class="check-icon" onclick="toggle(this)"></div><span class="check-text">Hỏi "Em có cần gì không?" thay vì chờ bạn ấy nói</span></li> <li><div class="check-icon" onclick="toggle(this)"></div><span class="check-text">Pha sẵn một ly trà gừng mật ong buổi sáng hoặc khi bạn ấy đau</span></li> <li><div class="check-icon" onclick="toggle(this)"></div><span class="check-text">Nhắc bạn ấy uống thuốc giảm đau đúng giờ (trước khi đau dữ dội hơn)</span></li> <li><div class="check-icon" onclick="toggle(this)"></div><span class="check-text">Đặt túi chườm lên bụng dưới hoặc lưng cho bạn ấy</span></li> <li><div class="check-icon" onclick="toggle(this)"></div><span class="check-text">Massage lưng dưới nhẹ nhàng theo vòng tròn bằng lòng bàn tay</span></li> <li><div class="check-icon" onclick="toggle(this)"></div><span class="check-text">Chuẩn bị bữa ăn nhẹ nếu bạn ấy không muốn ăn nhiều (cháo, súp ấm)</span></li> <li><div class="check-icon" onclick="toggle(this)"></div><span class="check-text">Không ép bạn ấy ra ngoài hoặc vận động khi đang đau nhiều</span></li> <li><div class="check-icon" onclick="toggle(this)"></div><span class="check-text">Chủ động làm thay những việc nhà nặng</span></li> <li><div class="check-icon" onclick="toggle(this)"></div><span class="check-text">Gợi ý xem phim hoặc nghe nhạc cùng — không nhất thiết phải làm gì lớn lao</span></li> <li><div class="check-icon" onclick="toggle(this)"></div><span class="check-text">Không phàn nàn hoặc bình luận về tâm trạng của bạn ấy</span></li> </ul> <p class="section-title">Thực phẩm nên và tránh</p> <div class="food-row"> <div class="food-col good"> <div class="food-col-title">Nên ăn uống</div> <div class="food-item"><div class="dot dot-good"></div>Trà gừng + mật ong ấm</div> <div class="food-item"><div class="dot dot-good"></div>Chocolate đen (70%+)</div> <div class="food-item"><div class="dot dot-good"></div>Chuối, bơ, rau xanh</div> <div class="food-item"><div class="dot dot-good"></div>Cháo, súp nóng</div> <div class="food-item"><div class="dot dot-good"></div>Nước ấm hoặc nước dừa</div> <div class="food-item"><div class="dot dot-good"></div>Trà hoa cúc (giảm co thắt)</div> <div class="food-item"><div class="dot dot-good"></div>Hạt óc chó, hạnh nhân</div> </div> <div class="food-col bad"> <div class="food-col-title">Nên tránh</div> <div class="food-item"><div class="dot dot-bad"></div>Đồ lạnh, đá, kem</div> <div class="food-item"><div class="dot dot-bad"></div>Cà phê nhiều (tăng co thắt)</div> <div class="food-item"><div class="dot dot-bad"></div>Đồ cay nóng mạnh</div> <div class="food-item"><div class="dot dot-bad"></div>Rượu bia</div> <div class="food-item"><div class="dot dot-bad"></div>Đồ mặn (gây phù nề)</div> <div class="food-item"><div class="dot dot-bad"></div>Thức ăn chiên rán nhiều dầu</div> <div class="food-item"><div class="dot dot-bad"></div>Nước ngọt có gas</div> </div> </div> </div> <!-- PAIN --> <div class="panel" id="panel-pain"> <p class="section-title">Giảm đau bụng dưới & đau lưng — cụ thể từng bước</p> <div style="border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); overflow: hidden; margin-bottom: 1.5rem;"> <div class="pain-row" style="padding: 12px 16px;"> <div class="pain-tag">Chườm nóng</div> <div class="pain-steps">Đặt túi chườm 40–45°C lên bụng dưới 15–20 phút. Lặp lại 2–3 lần/ngày. Hiệu quả như Ibuprofen với đau nhẹ–trung bình.</div> </div> <div class="pain-row" style="padding: 12px 16px; background: var(--color-background-secondary);"> <div class="pain-tag">Thuốc giảm đau</div> <div class="pain-steps">Ibuprofen 400mg sau ăn, uống sớm khi vừa bắt đầu đau (không chờ đến khi đau dữ dội). Nếu không uống được Ibuprofen thì dùng Paracetamol.</div> </div> <div class="pain-row" style="padding: 12px 16px;"> <div class="pain-tag">Massage lưng</div> <div class="pain-steps">Dùng lòng bàn tay ấn nhẹ và xoa tròn vùng lưng dưới. Tăng dần áp lực theo phản hồi của bạn ấy. Làm 5–10 phút, không cần dầu massage.</div> </div> <div class="pain-row" style="padding: 12px 16px; background: var(--color-background-secondary);"> <div class="pain-tag">Tư thế nằm</div> <div class="pain-steps">Nằm nghiêng, co đầu gối lên ngực (tư thế thai nhi) giảm áp lực tử cung. Kê gối giữa hai đầu gối để thêm thoải mái.</div> </div> <div class="pain-row" style="padding: 12px 16px;"> <div class="pain-tag">Tắm nước ấm</div> <div class="pain-steps">Tắm nước ấm hoặc ngâm bồn 15–20 phút — thư giãn cơ toàn thân, đặc biệt hiệu quả với đau lưng. Nhiệt độ nước khoảng 37–40°C.</div> </div> <div class="pain-row" style="padding: 12px 16px; background: var(--color-background-secondary);"> <div class="pain-tag">Vận động nhẹ</div> <div class="pain-steps">Đi bộ chậm 10–15 phút nếu bạn ấy không đau quá — giúp tăng tuần hoàn và giải phóng endorphin tự nhiên. Không ép nếu bạn ấy không muốn.</div> </div> <div class="pain-row" style="padding: 12px 16px;"> <div class="pain-tag">Trà gừng</div> <div class="pain-steps">Gừng tươi 2–3 lát + mật ong + nước sôi để nguội còn ấm. Uống từng ngụm nhỏ. Gừng có tính kháng viêm tự nhiên, giảm co thắt hiệu quả.</div> </div> <div class="pain-row" style="padding: 12px 16px; background: var(--color-background-secondary);"> <div class="pain-tag">Tinh dầu</div> <div class="pain-steps">Pha vài giọt tinh dầu oải hương hoặc bạc hà với dầu nền (dầu dừa), thoa nhẹ lên vùng bụng dưới và lưng, massage nhẹ nhàng.</div> </div> </div> <div class="tip-box"> <div class="tip-label">Lưu ý quan trọng</div> <div class="tip-text">Nếu bạn ấy đau dữ dội đến mức không thể sinh hoạt bình thường, đau kèm sốt, hoặc chu kỳ không đều — nên đi khám phụ khoa để loại trừ lạc nội mạc tử cung hoặc u xơ tử cung.</div> </div> </div> <!-- MENTAL --> <div class="panel" id="panel-mental"> <p class="section-title">Hỗ trợ tinh thần — những việc cụ thể bạn có thể làm</p> <div class="card-grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 1.5rem;"> <div class="card"> <div class="badge badge-purple">Lắng nghe</div> <div class="card-title">Nghe mà không phán xét</div> <div class="card-desc">Khi bạn ấy chia sẻ cảm xúc, đừng vội đưa ra giải pháp. Chỉ cần nói "Em nói anh nghe" hay "Anh hiểu" — đôi khi được lắng nghe là đủ rồi.</div> </div> <div class="card"> <div class="badge badge-teal">Hiện diện</div> <div class="card-title">Ở bên mà không làm phiền</div> <div class="card-desc">Ngồi gần, xem phim cùng, không nhất thiết phải nói chuyện. Sự hiện diện im lặng đôi khi có giá trị hơn nhiều lời an ủi.</div> </div> <div class="card"> <div class="badge badge-amber">Không cần lý do</div> <div class="card-title">Surprise nhỏ</div> <div class="card-desc">Mang về thanh chocolate, hoa nhỏ, hoặc món ăn bạn ấy thích — không cần lý do gì đặc biệt. Những cử chỉ nhỏ trong lúc này có ý nghĩa rất lớn.</div> </div> <div class="card"> <div class="badge badge-coral">Không phán xét</div> <div class="card-title">Chấp nhận tâm trạng</div> <div class="card-desc">Nếu bạn ấy cáu gắt hoặc buồn không rõ lý do — đừng phản ứng lại. Nhắc bản thân đây là hormone, không phải cảm xúc thật với mình.</div> </div> </div> <p class="section-title">Những câu nói nên và không nên</p> <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.5rem;"> <div style="background: #E1F5EE; border-radius: var(--border-radius-lg); padding: 1rem;"> <div style="font-size: 13px; font-weight: 500; color: #085041; margin-bottom: 10px;">Nên nói</div> <div style="font-size: 13px; color: #0F6E56; line-height: 1.8;">"Em có cần gì không?"<br>"Anh ở đây với em."<br>"Em muốn anh làm gì cho em?"<br>"Bình thường thôi em, anh hiểu."<br>"Em nghỉ đi, việc đó để anh lo."</div> </div> <div style="background: #FAECE7; border-radius: var(--border-radius-lg); padding: 1rem;"> <div style="font-size: 13px; font-weight: 500; color: #712B13; margin-bottom: 10px;">Không nên nói</div> <div style="font-size: 13px; color: #993C1D; line-height: 1.8;">"Tháng nào cũng vậy..."<br>"Đau vậy mà chịu không được?"<br>"Cần gì phải làm to chuyện vậy?"<br>"Em đang kịch quá không?"<br>"Ai cũng trải qua mà có sao đâu"</div> </div> </div> <p class="section-title">Hoạt động thư giãn gợi ý</p> <ul class="checklist"> <li><div class="check-icon" onclick="toggle(this)"></div><span class="check-text">Cùng xem phim nhẹ nhàng, phim hài hoặc phim bạn ấy thích — để bạn ấy chọn</span></li> <li><div class="check-icon" onclick="toggle(this)"></div><span class="check-text">Làm một bồn tắm ấm cho bạn ấy, thêm muối epsom hoặc tinh dầu oải hương nếu có</span></li> <li><div class="check-icon" onclick="toggle(this)"></div><span class="check-text">Tạo playlist nhạc nhẹ nhàng bạn ấy thích, để mở khe khẽ</span></li> <li><div class="check-icon" onclick="toggle(this)"></div><span class="check-text">Ôm bạn ấy nhẹ nhàng — hơi ấm cơ thể có tác dụng giảm stress thật sự</span></li> <li><div class="check-icon" onclick="toggle(this)"></div><span class="check-text">Nếu bạn ấy muốn ngủ — để bạn ấy ngủ, không nhắn tin liên tục</span></li> <li><div class="check-icon" onclick="toggle(this)"></div><span class="check-text">Nhẹ nhàng hỏi bạn ấy muốn ăn gì rồi chuẩn bị hoặc đặt đồ ăn về</span></li> </ul> </div> <!-- AFTER --> <div class="panel" id="panel-after"> <p class="section-title">Sau kỳ kinh — phục hồi & chăm sóc tiếp</p> <ul class="checklist"> <li><div class="check-icon" onclick="toggle(this)"></div><span class="check-text">Khuyến khích bổ sung sắt: thịt đỏ, gan, rau bina, đậu lăng (mất máu có thể gây mệt mỏi kéo dài)</span></li> <li><div class="check-icon" onclick="toggle(this)"></div><span class="check-text">Uống vitamin C cùng thực phẩm giàu sắt để tăng hấp thụ</span></li> <li><div class="check-icon" onclick="toggle(this)"></div><span class="check-text">Nhẹ nhàng khuyến khích bạn ấy vận động trở lại — đi bộ, yoga nhẹ</span></li> <li><div class="check-icon" onclick="toggle(this)"></div><span class="check-text">Hỏi thăm bạn ấy cảm thấy thế nào — không phải mọi người đều hồi phục ngay</span></li> <li><div class="check-icon" onclick="toggle(this)"></div><span class="check-text">Ghi lại chu kỳ (giúp bạn chuẩn bị tốt hơn cho tháng sau)</span></li> <li><div class="check-icon" onclick="toggle(this)"></div><span class="check-text">Hỏi bạn ấy lần này anh đã làm tốt gì, chưa tốt gì — để cải thiện tháng sau</span></li> <li><div class="check-icon" onclick="toggle(this)"></div><span class="check-text">Nếu đau quá nặng mỗi tháng — nhẹ nhàng đề nghị đi khám phụ khoa cùng bạn ấy</span></li> </ul> <div class="tip-box"> <div class="tip-label">Bí quyết dài hạn</div> <div class="tip-text">Theo dõi chu kỳ của bạn ấy (dùng app như Flo hoặc Clue) để bạn biết trước và chuẩn bị. Sự chủ động của bạn sẽ khiến bạn ấy cảm thấy được quan tâm thật sự, không phải chỉ khi được nhắc.</div> </div> <button class="sendBtn" onclick="sendPrompt('Gợi ý app theo dõi chu kỳ kinh nguyệt nào tốt nhất cho bạn gái?')">Gợi ý app theo dõi chu kỳ tốt nhất ↗</button> </div> </div>
+<script>
+/* TAB */
+function showTab(id){
+  document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+  document.getElementById("panel-"+id).classList.add("active");
+
+  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+  event.target.classList.add("active");
+}
+
+/* CHECKLIST + LƯU */
+let checks=document.querySelectorAll(".check-icon");
+let state=JSON.parse(localStorage.getItem("care"))||Array(checks.length).fill(false);
+
+checks.forEach((el,i)=>{
+  if(state[i]){
+    el.classList.add("done");
+    el.innerHTML="✓";
+    el.parentElement.querySelector(".check-text").classList.add("done");
+  }
+
+  el.onclick=()=>{
+    state[i]=!state[i];
+    el.classList.toggle("done");
+    el.innerHTML=state[i]?"✓":"";
+    el.parentElement.querySelector(".check-text").classList.toggle("done");
+
+    localStorage.setItem("care",JSON.stringify(state));
+  }
+});
+
+/* BUTTON DEMO */
+function sendPrompt(text){
+  alert(text);
+}
+</script>
+
+</body>
+</html>
